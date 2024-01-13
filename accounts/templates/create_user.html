@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+    <a class="nav-link active" aria-current="page" href="{% url 'webapp:home' %}">На главную</a>
+{% endblock %}
+
+    <title>{% block title %}Registrate{% endblock %}</title>
+
+{% block content %}
+<h1 style="margin-top: 50px; margin-bottom: 50px">Add new User</h1>
+    <form action="" method="post">
+    {% csrf_token %}
+    {% include 'partial/create_update.html' with value_submit='Зарегаться' %}
+    </form>
+{% endblock %}

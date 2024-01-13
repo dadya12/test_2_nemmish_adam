@@ -10,7 +10,6 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model =Review
         fields = ['author', 'product', 'text', 'rating', 'moderate']
-        widgets = {'rating': forms.CheckboxSelectMultiple}
 
 
 class ProductUserForm(forms.ModelForm):

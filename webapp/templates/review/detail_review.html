@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+<title>{% block title %}Details{% endblock %}</title>
+
+{% block content %}
+    <h1 style="margin-top: 50px; margin-bottom: 50px">Details:</h1>
+    <div class="card border-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header bg-transparent border-dark"><b>{{ review.author }}</b></div>
+        <div class="card-body">
+            <h5 class="card-title">{{ review.text }}</h5>
+            <h6 class="card-text">Рейтинг: {{ review.rating }}</h6>
+            <h6 class="card-text">{{ review.moderate }}</h6>
+            <h6 class="card-text">Создано: {{ review.created_at }}</h6>
+        </div>
+        <div class="card-footer bg-transparent border-success"><b>{{ task.created_date }}</b></div>
+    </div>
+{% endblock %}

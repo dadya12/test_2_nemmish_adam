@@ -6,6 +6,7 @@ class Product(models.Model):
     category = models.CharField(max_length=35, verbose_name='Категория', choices=[('Dark chocolate', 'Черный'),('Milk chocolate', 'Молочный'), ('White chocolate', 'Белый')])
     description = models.TextField(max_length=200, null=True, blank=True, verbose_name='Описание')
     image = models.ImageField(upload_to='product_images', verbose_name='Картинка', null=True, blank=True)
+    users = models.ManyToManyField(get_user_model(), related_name='products', verbose_name='Пользователи', null=True, blank=True)
 
     def __str__(self):
         return self.name

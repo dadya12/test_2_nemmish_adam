@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+    <a class="nav-link active" aria-current="page" href="{% url 'webapp:home' %}">На главную</a>
+{% endblock %}
+
+    <title>{% block title %}Create{% endblock %}</title>
+
+{% block content %}
+<h1 style="margin-top: 50px; margin-bottom: 50px">Добавить отзыв:</h1>
+<form method="post" action="">
+    {% include 'partial/create_update.html' with value_submit='Добавить' %}
+</form>
+{% endblock %}
