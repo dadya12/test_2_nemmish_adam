@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+    <a class="nav-link active" aria-current="page" href="{% url 'webapp:home' %}">webapp:home page</a>
+{% endblock %}
+
+    <title>{% block title %}Update{% endblock %}</title>
+
+{% block content %}
+
+<h1 style="margin-top: 50px; margin-bottom: 50px">Update your Project</h1>
+<form method="post" enctype="multipart/form-data">
+    {% include 'partial/create_update.html' with value_submit='Заменить' %}
+</form>
+{% endblock %}

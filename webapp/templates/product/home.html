@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+    {% if perms.webapp.add_project %}
+        <a class="nav-link active" aria-current="page" href="{% url 'webapp:create_product' %}">Добавить Продукт</a>
+    {% endif %}
+{% endblock %}
+
+<title>{% block title %}Products{% endblock %}</title>
+
+{% block content %}
+    {% if is_paginated %}
+        {% include 'partial/paginate.html' %}
+    {% endif %}
+    <h1 style="margin-top: 50px">Список Товаров:</h1>
+    <div class="row row-cols-3">
+        {% for product in products %}
+            <div class="col">
+                <div class="card mb-3"
+                     style="width: 18rem; border-radius: 5px; margin-top: 50px; border: 1px solid rebeccapurple">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ product.name }}</h4>
+                        <h6 class="card-text">Description: {{ product.description }}</h6>
+                        <h6 class="card-text">Category: {{ product.category }}</h6>
+                        <a href="{% url 'webapp:detail_product' product.pk %}" class="btn btn-dark">See more</a>
+                        <a href="{% url 'webapp:update_product' product.pk %}" class="btn btn-danger"
+                           style="margin-left: 20px;">Redact</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

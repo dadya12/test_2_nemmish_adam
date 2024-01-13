@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+    {% if perms.webapp.add_project %}
+        <span style="margin-top: 8px">|</span>
+        <a class="nav-link active" aria-current="page" href="{% url 'webapp:delete_product' products.pk %}">Удалить Продукт</a>
+    {% endif %}
+    {% if perms.webapp.add_project %}
+        <span style="margin-top: 8px">|</span>
+        
+    {% endif %}
+{% endblock %}
+
+<title>{% block title %}Details{% endblock %}</title>
+
+{% block content %}
+    <center>
+        <div class="card mb-3" style="max-width: 680px; margin-top: 50px">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    {% if products.image %}
+                        <img src="{{ products.image.url }}" class="img-fluid rounded-start" alt=""
+                             style="max-width: 239px">
+                    {% else %}
+                        <img src="http://via.placeholder.com/239x239" class="img-fluid rounded-start" alt=""
+                             style="max-width: 239px">
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ products.name }}</h5>
+                        <p class="card-text">{{ products.description }}</p>
+                        <p class="card-text"><small
+                                class="text-body-secondary">Категория: {{ products.category }}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+    <h3 class="mb-3">Отзывы:</h3>
+    {% if reviews %}
+        <div style="display: flex">
+            {% for review in reviews %}
+                <div class="card me-3 mb-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Author: {{ review.author.username }}</h5>
+                        <p class="card-subtitle mb-2 text-body-secondary"><b>{{ review.author.email }}</b></p>
+                        <p class="card-text">{{ review.text }}</p>
+                        <p><strong class="card-text">Оценка: {{ review.rating }}</strong></p>
+                        <a href="" class="btn btn-primary">Изменить</a>
+                        <a href="" class="btn btn-danger ms-3">Удалить</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h4>Отзывы отсутствуют :(</h4>
+    {% endif %}
+{% endblock %}

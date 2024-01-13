@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+    <a class="nav-link active" aria-current="page" href="{% url 'webapp:home' %}">Главная страница</a>
+{% endblock %}
+
+
+<title>{% block title %}Delete{% endblock %}</title>
+
+{% block content %}
+    <h1 style="margin-top: 50px; margin-bottom: 50px">Вы уверены в что хотите удалить!? </h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success">Да</button>
+        <a class="btn btn-danger" href="{% url 'webapp:home' %}" role="button">Нет</a>
+    </form>
+{% endblock %}
